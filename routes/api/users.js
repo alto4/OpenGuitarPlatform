@@ -3,6 +3,8 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
 const User = require('../../models/User');
 
@@ -27,9 +29,9 @@ router.post(
       let user = await User.findOne({ email });
 
       if (user) {
-        res
+        return res
           .status(400)
-          .json({ errors: [{ message: 'Sorry, a user with the same email alreadt exists in our records.' }] });
+          .json({ errors: [{ message: 'Sorry, a user with the same email already exists in our records.' }] });
       }
 
       // Try to grab existing users gravatar
@@ -53,7 +55,19 @@ router.post(
       await user.save();
 
       // Return JWT (token)
-      res.send('User successfully registered.');
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 360000 }, (err, token) => {
+        if (err) {
+          throw err;
+        }
+
+        res.json({ token });
+      });
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error.');
