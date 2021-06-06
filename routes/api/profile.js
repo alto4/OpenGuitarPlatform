@@ -29,6 +29,84 @@ router.post('/', [auth, [check('status', 'Status is required.').not().isEmpty()]
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
+
+  const { instrument, level, location, status, bio, genres, years, youtube, twitter, facebook, linkedin, instagram } =
+    req.body;
+
+  // Build profile object
+  const profileFields = {};
+  profileFields.user = req.user.id;
+
+  if (instrument) {
+    profileFields.instrument = instrument;
+  }
+
+  if (location) {
+    profileFields.location = location;
+  }
+
+  if (status) {
+    profileFields.status = status;
+  }
+
+  if (bio) {
+    profileFields.bio = bio;
+  }
+
+  if (genres) {
+    profileFields.genres = genres;
+  }
+
+  if (years) {
+    profileFields.years = years;
+  }
+  // youtube, twitter, facebook, linkedin, instagram
+
+  if (genres) {
+    profileFields.genres = genres.split(',').map((genre) => genre.trim());
+  }
+
+  // Build social links object
+  profileFields.social = {};
+
+  if (youtube) {
+    profileFields.social.youtube = youtube;
+  }
+
+  if (twitter) {
+    profileFields.social.twitter = twitter;
+  }
+
+  if (facebook) {
+    profileFields.social.facebook = facebook;
+  }
+
+  if (linkedin) {
+    profileFields.social.linkedin = linkedin;
+  }
+
+  if (instagram) {
+    profileFields.social.instagram = instagram;
+  }
+
+  try {
+    let profile = await Profile.findOne({ user: req.user.id });
+
+    // If a profile already exists, update it
+    if (profile) {
+      profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true });
+      return res.json(profile);
+    }
+
+    // Create a new profile
+    profile = new Profile(profileFields);
+    await profile.save();
+
+    res.json(profile);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Sever error.');
+  }
 });
 
 module.exports = router;
