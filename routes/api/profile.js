@@ -109,4 +109,48 @@ router.post('/', [auth, [check('status', 'Status is required.').not().isEmpty()]
   }
 });
 
+// @route GET api/profile public -> Get all profiles
+router.get('/', async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+    res.json(profiles);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// @route GET api/profile/user/:user_id public -> Get single user profile
+router.get('/user/:user_id', async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'avatar']);
+
+    if (!profile) {
+      return res.status(400).json({ message: 'No profile exists for this user.' });
+    }
+
+    res.json(profile);
+  } catch (error) {
+    console.error(error.message);
+
+    if (error.kind == 'ObjectId') {
+      return res.status(400).json({ message: 'No profile exists for this user.' });
+    }
+
+    res.status(500).send('Server error');
+  }
+});
+
+// @route DELETE api/profile private -> Delete profile, along with user and posts
+router.delete('/', auth, async (req, res) => {
+  try {
+    // Remove profile and user records
+    await Profile.findOneAndRemove({ user: req.user.id });
+    await User.findOneAndRemove({ _id: req.user.id });
+    res.json({ message: 'User and corresponding profile successfully removed.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Sever error.');
+  }
+});
 module.exports = router;
