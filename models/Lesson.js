@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { rawListeners } = require('./Post');
 const Schema = mongoose.Schema;
 
 const LessonSchema = new Schema({
@@ -68,4 +69,4 @@ const LessonSchema = new Schema({
   },
 });
 
-module.exports = Lesson = mongoose.model('lesson');
+module.exports = Lesson = mongoose.model('lesson', LessonSchema);
