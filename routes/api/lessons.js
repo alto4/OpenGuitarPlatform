@@ -106,4 +106,47 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
+// @route PUT api/lessons/enrol/:id private - enroll in a lesson
+router.put('/enroll/:id', auth, async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id);
+
+    if (lesson.enrolled.filter((enrolled) => enrolled.user.toString() === req.user.id).length > 0) {
+      return res.status(400).json({ message: 'You have already enrolled in this course.' });
+    }
+
+    lesson.enrolled.unshift({ user: req.user.id });
+
+    await lesson.save();
+
+    res.json(lesson.enrolled);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route PUT api/posts/unenroll/:id private - unenroll from a course
+router.put('/unenroll/:id', auth, async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id);
+
+    if (lesson.enrolled.filter((enrollment) => enrollment.user.toString() === req.user.id).length === 0) {
+      return res.status(400).json({ message: 'You are not yet registered for this lesson.' });
+    }
+
+    // Get removal index
+    const removeIndex = lesson.enrolled.map((enrollment) => enrollment.user.toString()).indexOf(req.user.id);
+
+    lesson.enrolled.splice(removeIndex, 1);
+
+    await lesson.save();
+
+    res.json(lesson.enrolled);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;
