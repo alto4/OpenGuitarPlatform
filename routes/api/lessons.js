@@ -46,4 +46,35 @@ router.post(
   }
 );
 
+// @route GET api/lessons public - get all lessons
+router.get('/', async (req, res) => {
+  try {
+    const lessons = await Lesson.find().sort({ date: -1 });
+    res.json(lessons);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error.');
+  }
+});
+
+// @route GET api/lessons/:id public - get single lesson
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id);
+
+    if (!lesson) {
+      return res.status(404).json({ message: 'Lesson not found.' });
+    }
+
+    res.json(lesson);
+  } catch (error) {
+    console.error(error.message);
+
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ message: 'Lesson not found.' });
+    }
+
+    res.status(500).send('Server error.');
+  }
+});
 module.exports = router;
