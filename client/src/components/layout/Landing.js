@@ -7,7 +7,8 @@ const Landing = () => {
       <div className='hero-container'>
         <h1>OpenGuitar</h1>
         <p className='lead'>
-          A platform built to connect current and aspiring guitar players and provide them with free, concise,
+          A platform built to connect current and aspiring guitar players around the world and provide them with free,
+          concise reference documentation and video lessons.
         </p>
         <div className='hero-buttons'>
           <Link to='/register' className='btn btn-primary'>

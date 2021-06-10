@@ -4,18 +4,19 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav className='navbar'>
-      <h1>
-        <i className='fa fa-guitar'></i> OpenGuitar
-      </h1>
+      <Link to='/' className='logo'>
+        <i className='fa fa-guitar fa-lg'></i> OpenGuitar{' '}
+      </Link>
+
       <ul className='nav-links'>
-        <li>
+        <li className='nav-item'>
           <Link to='/'>Lessons</Link>
         </li>
-        <li>
-          <Link href='/register'>Register</Link>
+        <li className='nav-item'>
+          <Link to='/register'>Register</Link>
         </li>
-        <li>
-          <Link href='/login'>Login</Link>
+        <li className='nav-item'>
+          <Link to='/login'>Login</Link>
         </li>
       </ul>
     </nav>
