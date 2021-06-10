@@ -91,7 +91,12 @@ header {
   font-weight: bold;
 }
 
-.hero .btn:hover {
+.btn-login {
+  border: 1px solid #bea67c;
+  color: #bea67c;
+}
+.btn-login:hover,
+.hero-container .btn:hover {
   background: #101111;
   cursor: pointer;
 }
