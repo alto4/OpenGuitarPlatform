@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,8 +25,7 @@ const Register = ({ setAlert }) => {
     if (password !== passwordConfirm) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      console.log('Success');
-      console.log(formData);
+      register({ name, email, password });
     }
   };
 
@@ -38,17 +38,10 @@ const Register = ({ setAlert }) => {
 
       <form className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='form-group'>
-          <input type='text' placeholder='Name' name='name' value={name} onChange={(e) => onChange(e)} required />
+          <input type='text' placeholder='Name' name='name' value={name} onChange={(e) => onChange(e)} />
         </div>
         <div className='form-group'>
-          <input
-            type='text'
-            placeholder='Email Address'
-            name='email'
-            value={email}
-            onChange={(e) => onChange(e)}
-            required
-          />
+          <input type='text' placeholder='Email Address' name='email' value={email} onChange={(e) => onChange(e)} />
         </div>
         <div className='form-group'>
           <input
@@ -57,7 +50,6 @@ const Register = ({ setAlert }) => {
             name='password'
             value={password}
             onChange={(e) => onChange(e)}
-            required
           />
         </div>
         <div className='form-group'>
@@ -67,7 +59,6 @@ const Register = ({ setAlert }) => {
             name='passwordConfirm'
             value={passwordConfirm}
             onChange={(e) => onChange(e)}
-            required
           />
         </div>
         <button className='btn btn-submit'>Register</button>
@@ -81,6 +72,7 @@ const Register = ({ setAlert }) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
