@@ -8,7 +8,7 @@ module.exports = function (req, res, next) {
   // Check for token
   if (!token) {
     // 401 -> access denied
-    return res.status(401).json({ msg: 'No access token could be generated. Access denied' });
+    return res.status(401).json({ message: 'No access token could be generated. Access denied' });
   }
 
   // Verify token
@@ -18,6 +18,6 @@ module.exports = function (req, res, next) {
     req.user = decoded.user;
     next();
   } catch (error) {
-    res.status(401).json({ msg: 'Invalid access token.' });
+    res.status(401).json({ message: 'Invalid access token.' });
   }
 };

@@ -31,7 +31,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ errors: [{ message: 'Sorry, a user with the same email already exists in our records.' }] });
+          .json({ errors: [{ msg: 'Sorry, a user with the same email already exists in our records.' }] });
       }
 
       // Try to grab existing users gravatar
