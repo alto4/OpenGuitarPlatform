@@ -91,7 +91,8 @@ header {
   font-weight: bold;
 }
 
-.btn-login {
+.btn-login,
+.btn-logout {
   border: 1px solid #bea67c;
   color: #bea67c;
 }
