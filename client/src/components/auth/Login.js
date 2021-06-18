@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { setAlert } from '../../actions/alert';
 import { login } from '../../actions/auth';
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,9 +21,12 @@ const Login = ({ login, isAuthenticated }) => {
     e.preventDefault();
     if (email === '') {
       setAlert('Email is required.', 'danger');
-    } else if (email === '') {
+    }
+
+    if (password === '') {
       setAlert('Password is required.', 'danger');
-    } else {
+    }
+    if (email !== '' && password !== '') {
       login(email, password);
     }
   };
@@ -62,6 +65,7 @@ const Login = ({ login, isAuthenticated }) => {
 };
 
 Login.propTypes = {
+  setAlert: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 };
@@ -70,4 +74,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, setAlert })(Login);
