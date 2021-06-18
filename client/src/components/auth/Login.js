@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { setAlert } from '../../actions/alert';
 import { login } from '../../actions/auth';
 
 const Login = ({ login, isAuthenticated }) => {
@@ -18,7 +19,13 @@ const Login = ({ login, isAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    login(email, password);
+    if (email === '') {
+      setAlert('Email is required.', 'danger');
+    } else if (email === '') {
+      setAlert('Password is required.', 'danger');
+    } else {
+      login(email, password);
+    }
   };
 
   // Redirect upon successful login
@@ -34,14 +41,7 @@ const Login = ({ login, isAuthenticated }) => {
 
       <form className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='form-group'>
-          <input
-            type='text'
-            placeholder='Email Address'
-            name='email'
-            value={email}
-            onChange={(e) => onChange(e)}
-            required
-          />
+          <input type='text' placeholder='Email Address' name='email' value={email} onChange={(e) => onChange(e)} />
         </div>
         <div className='form-group'>
           <input
@@ -50,7 +50,6 @@ const Login = ({ login, isAuthenticated }) => {
             name='password'
             value={password}
             onChange={(e) => onChange(e)}
-            required
           />
         </div>
         <button className='btn btn-submit'>Sign In</button>
