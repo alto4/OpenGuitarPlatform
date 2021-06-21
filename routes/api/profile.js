@@ -41,6 +41,10 @@ router.post('/', [auth, [check('status', 'Status is required.').not().isEmpty()]
     profileFields.instrument = instrument;
   }
 
+  if (level) {
+    profileFields.level = level;
+  }
+
   if (location) {
     profileFields.location = location;
   }
