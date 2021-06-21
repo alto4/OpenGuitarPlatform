@@ -1,12 +1,47 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_PROFILE, UPDATE_PROFILE, CLEAR_PROFILE, DELETE_ACCOUNT, PROFILE_ERROR } from './types';
+import { GET_PROFILE, GET_PROFILES, UPDATE_PROFILE, CLEAR_PROFILE, DELETE_ACCOUNT, PROFILE_ERROR } from './types';
 
 // Get authenticated users profile
 export const getCurrentProfile = () => async (dispatch) => {
   try {
     // Will use token to get current user's profile
     const res = await axios.get('/api/profile/me');
+
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { message: error.response.statusText, state: error.response.status },
+    });
+  }
+};
+
+// Get all profiles
+export const getProfiles = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
+
+  try {
+    const res = await axios.get('/api/profile');
+
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { message: error.response.statusText, state: error.response.status },
+    });
+  }
+};
+
+export const getProfileById = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/profile/user/${userId}`);
 
     dispatch({
       type: GET_PROFILE,
