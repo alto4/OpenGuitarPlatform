@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createProfile } from '../../actions/profile';
 
-const CreateProfile = (props) => {
+const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
     instrument: '',
     level: '',
@@ -28,11 +29,15 @@ const CreateProfile = (props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    createProfile(formData, history);
+  };
   return (
     <>
       <h1>Create Your Profile</h1>
       <p className='lead'>Add information to your profile using the form below.</p>
-      <form action='' className='form'>
+      <form action='' className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='form-group'>
           <select name='instrument' value={instrument} onChange={(e) => onChange(e)}>
             <option value='0'>Select Primary Instrument</option>
@@ -153,6 +158,8 @@ const CreateProfile = (props) => {
   );
 };
 
-CreateProfile.propTypes = {};
+CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+};
 
-export default CreateProfile;
+export default connect(null, { createProfile })(withRouter(CreateProfile));

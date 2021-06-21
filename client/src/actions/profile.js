@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { setAlert } from './alert';
 import { GET_PROFILE, PROFILE_ERROR } from './types';
 
 // Get authenticated users profile
@@ -19,3 +19,40 @@ export const getCurrentProfile = () => async (dispatch) => {
     });
   }
 };
+
+// Create or update profile
+export const createProfile =
+  (formData, history, edit = false) =>
+  async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const res = await axios.post('/api/profile', formData, config);
+
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data,
+      });
+
+      dispatch(setAlert(edit ? 'Profile successfully updated.' : 'Profile successfully created.'));
+
+      if (!edit) {
+        history.push('/dashboard');
+      }
+    } catch (error) {
+      const errors = error.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      }
+
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { message: error.response.statusText, state: error.response.status },
+      });
+    }
+  };
