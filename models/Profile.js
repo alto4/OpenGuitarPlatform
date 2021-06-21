@@ -27,6 +27,25 @@ const ProfileSchema = new mongoose.Schema({
   years: {
     type: Number,
   },
+  experience: [
+    {
+      position: {
+        type: String,
+      },
+      organization: {
+        type: String,
+      },
+      from: {
+        type: Date,
+      },
+      to: {
+        type: Date,
+      },
+      description: {
+        type: String,
+      },
+    },
+  ],
   education: [
     {
       school: {
