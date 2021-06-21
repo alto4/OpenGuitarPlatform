@@ -44,10 +44,10 @@ const AddEducation = ({ addEducation, history }) => {
           <input type='text' placeholder='Field of Study' name='field' value={field} onChange={(e) => onChange(e)} />
         </div>
         <div className='form-group'>
-          <input type='text' placeholder='From' name='from' value={from} onChange={(e) => onChange(e)} />
+          <input type='date' placeholder='From' name='from' value={from} onChange={(e) => onChange(e)} />
         </div>
         <div className='form-group'>
-          <input type='text' placeholder='To' name='to' value={to} onChange={(e) => onChange(e)} />
+          <input type='date' placeholder='To' name='to' value={to} onChange={(e) => onChange(e)} />
         </div>
         <div className='form-group'>
           <input

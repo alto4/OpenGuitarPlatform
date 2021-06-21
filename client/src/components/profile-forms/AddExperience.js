@@ -40,10 +40,10 @@ const AddExperience = ({ addExperience, history }) => {
           />
         </div>
         <div className='form-group'>
-          <input type='text' placeholder='From' name='from' value={from} onChange={(e) => onChange(e)} />
+          <input type='date' placeholder='From' name='from' value={from} onChange={(e) => onChange(e)} />
         </div>
         <div className='form-group'>
-          <input type='text' placeholder='To' name='to' value={to} onChange={(e) => onChange(e)} />
+          <input type='date' placeholder='To' name='to' value={to} onChange={(e) => onChange(e)} />
         </div>
         <div className='form-group'>
           <input
