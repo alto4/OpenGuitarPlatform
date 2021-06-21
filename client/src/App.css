@@ -13,11 +13,70 @@
   color: inherit;
 }
 
+body, input, button {
+  background: #000;
+  color: #fff;
+}
+
 /* Utility Styles */
 .btn {
   display: block;
 }
 
+.login-section,
+.register-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+}
+
+form {
+  min-width: 400px;
+}
+
+.form-group {
+  margin: 20px auto;
+  border-bottom: 1px solid #222;
+  padding: 5px;
+}
+
+input {
+  font-size: 1.1rem;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  background-color: transparent;
+  color: #fff;
+}
+
+button {
+  margin: auto;
+  padding: 10px 20px;
+  background: #222;
+  border-radius: .5rem;
+}
+
+/* Alert Styles */
+.alert {  
+  max-width: 550px;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: .5rem;
+  text-align: center;
+}
+
+.alert-success {
+  background: green;
+}
+
+.alert-danger {
+  background: #800020;
+}
 /* Navbar Styles */
 header {
   color: #fff;

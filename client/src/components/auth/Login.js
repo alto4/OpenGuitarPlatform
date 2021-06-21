@@ -36,13 +36,13 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
     return <Redirect to='/dashboard' />;
   }
   return (
-    <Fragment>
+    <section className='login-section'>
       <h1>Sign In</h1>
       <p className='lead'>
         <i className='fa fa-user'></i> Sign Into Your Account
       </p>
 
-      <form className='form' onSubmit={(e) => onSubmit(e)}>
+      <form className='form' onSubmit={(e) => onSubmit(e)} autoComplete='false'>
         <div className='form-group'>
           <input type='text' placeholder='Email Address' name='email' value={email} onChange={(e) => onChange(e)} />
         </div>
@@ -60,7 +60,7 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
       <p>
         Not registered yet? Come <Link to='/register'>join us!</Link>
       </p>
-    </Fragment>
+    </section>
   );
 };
 
