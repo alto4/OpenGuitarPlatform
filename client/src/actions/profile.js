@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_PROFILE, UPDATE_PROFILE, PROFILE_ERROR } from './types';
+import { GET_PROFILE, UPDATE_PROFILE, CLEAR_PROFILE, DELETE_ACCOUNT, PROFILE_ERROR } from './types';
 
 // Get authenticated users profile
 export const getCurrentProfile = () => async (dispatch) => {
@@ -156,5 +156,28 @@ export const deleteEducation = (id) => async (dispatch) => {
       type: PROFILE_ERROR,
       payload: { message: error.response.statusText, state: error.response.status },
     });
+  }
+};
+
+// Delete account and profile
+export const deleteAccount = () => async (dispatch) => {
+  if (
+    window.confirm(
+      'Are you sure you want to permanently remove your account? This will delete all of your profile and account information forever.'
+    )
+  ) {
+    try {
+      await axios.delete(`/api/profile`);
+
+      dispatch({ type: CLEAR_PROFILE });
+      dispatch({ type: DELETE_ACCOUNT });
+
+      dispatch(setAlert('Your account has been successfuly deleted.', 'success'));
+    } catch (error) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { message: error.response.statusText, state: error.response.status },
+      });
+    }
   }
 };
