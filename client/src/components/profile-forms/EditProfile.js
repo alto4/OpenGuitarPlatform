@@ -39,7 +39,8 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
       linkedin: loading || !profile.linkedin ? '' : profile.linkedin,
       instagram: loading || !profile.instagram ? '' : profile.instagram,
     });
-  }, [loading]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, getCurrentProfile]);
 
   const { instrument, level, location, status, bio, genres, years, youtube, twitter, facebook, linkedin, instagram } =
     formData;
