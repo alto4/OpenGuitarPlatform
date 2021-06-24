@@ -58,7 +58,10 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
         <button className='btn btn-submit'>Sign In</button>
       </form>
       <p>
-        Not registered yet? Come <Link to='/register'>join us!</Link>
+        Not registered yet?{' '}
+        <span className='text-gold'>
+          <Link to='/register'>Come join us!</Link>
+        </span>
       </p>
     </section>
   );

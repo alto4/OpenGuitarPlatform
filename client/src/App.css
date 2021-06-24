@@ -15,6 +15,8 @@
 
 body,
 input,
+select,
+textarea,
 button {
   background: #000;
   color: #fff;
@@ -40,6 +42,10 @@ h1 {
 .lead {
   font-size: 1.2rem;
   text-align: center;
+}
+
+.text-gold {
+  color: #bea67c;
 }
 
 .login-section,
@@ -145,12 +151,14 @@ header {
 .hero-container h1 {
   font-size: 3.5rem;
   padding: 30px 0;
+  text-align: left;
 }
 
 .hero-container p {
   max-width: 650px;
   font-size: 1.1rem;
   line-height: 1.6;
+  text-align: left;
 }
 
 .hero-container .hero-buttons {
@@ -204,6 +212,18 @@ header {
   margin: 20px auto;
 }
 
+.profile-top {
+  text-align: center;
+}
+
+
+/* Dashboard Styles */
+.dashboard-action-buttons { 
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 50px auto;
+}
 
 @media(max-width: 600px) {
   .navbar {

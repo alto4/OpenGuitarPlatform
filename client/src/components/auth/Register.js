@@ -69,7 +69,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <button className='btn'>Register</button>
       </form>
       <p>
-        Already have an account? <Link to='/login'>Sign In</Link>.
+        Already have an account?{' '}
+        <span className='text-gold'>
+          <Link to='/login'>Sign In</Link>.
+        </span>
       </p>
     </section>
   );
