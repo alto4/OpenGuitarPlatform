@@ -13,14 +13,31 @@
   color: inherit;
 }
 
-body, input, button {
+body,
+input,
+button {
   background: #000;
   color: #fff;
 }
 
 /* Utility Styles */
+.container {
+  padding: 50px;
+  max-width: 1200px;
+  margin: auto
+}
+
 .btn {
   display: block;
+}
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 12px;
+}
+
+.lead {
+  font-size: 1.2rem;
 }
 
 .login-section,
@@ -28,11 +45,11 @@ body, input, button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 80px;
 }
 
 form {
   min-width: 400px;
+  margin: 20px auto 50px;
 }
 
 .form-group {
@@ -54,7 +71,7 @@ input:-webkit-autofill {
   color: #fff;
 }
 
-button {
+.btn {
   margin: auto;
   padding: 10px 20px;
   background: #222;
@@ -62,7 +79,7 @@ button {
 }
 
 /* Alert Styles */
-.alert {  
+.alert {
   max-width: 550px;
   padding: 10px;
   margin: 10px auto;
@@ -77,6 +94,7 @@ button {
 .alert-danger {
   background: #800020;
 }
+
 /* Navbar Styles */
 header {
   color: #fff;
@@ -114,7 +132,7 @@ header {
 .hero-container {
   position: relative;
   color: #fff;
-  background: linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.9) ),url('https://images.pexels.com/photos/6966/abstract-music-rock-bw.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center bottom fixed;  
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.9)), url('https://images.pexels.com/photos/6966/abstract-music-rock-bw.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center bottom fixed;
   display: flex;
   flex-direction: column;
   padding-left: 22vw;
@@ -140,6 +158,7 @@ header {
 
 .hero-container .btn {
   border: 1px solid #bea67c;
+  border-radius: 0;
   text-align: center;
   color: #bea67c;
   background: #000;
@@ -155,11 +174,34 @@ header {
   border: 1px solid #bea67c;
   color: #bea67c;
 }
+
 .btn-login:hover,
 .hero-container .btn:hover {
   background: #101111;
   cursor: pointer;
 }
+
+/* Profiles Styles */
+.profiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.profile img {
+  border-radius: 100%;
+  width: 60%;
+  margin: 20px auto;
+}
+
 
 @media(max-width: 600px) {
   .navbar {
