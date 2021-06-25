@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const ProfileTop = ({
@@ -19,24 +18,24 @@ const ProfileTop = ({
       <p>{location && <span>{location}</span>}</p>
       <div className='icons'>
         {social && social.linkedin && (
-          <Link href='#' target='_blank'>
+          <a href={social.linkedin} target='_blank' rel='noopener noreferrer'>
             <i className='fab fa-linkedin fa-2x'></i>
-          </Link>
+          </a>
         )}
         {social && social.youtube && (
-          <Link href='#' target='_blank'>
+          <a href={social.youtube} target='_blank' rel='noopener noreferrer'>
             <i className='fab fa-youtube fa-2x'></i>
-          </Link>
+          </a>
         )}
         {social && social.facebook && (
-          <Link href='#' target='_blank'>
+          <a href={social.facebook} target='_blank' rel='noopener noreferrer'>
             <i className='fab fa-facebook fa-2x'></i>
-          </Link>
+          </a>
         )}
         {social && social.instagram && (
-          <Link href='#' target='_blank'>
+          <a href={social.instagram} target='_blank' rel='noopener noreferrer'>
             <i className='fab fa-instagram fa-2x'></i>
-          </Link>
+          </a>
         )}
       </div>
     </div>

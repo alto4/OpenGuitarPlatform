@@ -16,6 +16,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <li className='nav-item'>
         <Link to='/profiles'>Profiles</Link>
       </li>
+      <li className='nav-item'>
+        <Link to='/posts'>Posts</Link>
+      </li>
       <li className='nav-item btn-logout'>
         <a onClick={logout} href='#!'>
           Logout
