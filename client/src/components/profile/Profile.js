@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ProfileTop from './ProfileTop';
+import ProfileAbout from './ProfileAbout';
 import Spinner from '../layout/Spinner';
 import { getProfileById } from '../../actions/profile';
 
@@ -26,6 +27,7 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth, match })
             </Link>
           )}
           <ProfileTop profile={profile} />
+          <ProfileAbout profile={profile} />
         </>
       )}
     </>

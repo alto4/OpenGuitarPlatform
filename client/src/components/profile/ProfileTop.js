@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const ProfileTop = ({
   profile: {
     status,
-    company,
     location,
     website,
     social,
@@ -17,6 +17,28 @@ const ProfileTop = ({
       <h1>{name}</h1>
       <p className='lead'>{status}</p>
       <p>{location && <span>{location}</span>}</p>
+      <div className='icons'>
+        {social && social.linkedin && (
+          <Link href='#' target='_blank'>
+            <i className='fab fa-linkedin fa-2x'></i>
+          </Link>
+        )}
+        {social && social.youtube && (
+          <Link href='#' target='_blank'>
+            <i className='fab fa-youtube fa-2x'></i>
+          </Link>
+        )}
+        {social && social.facebook && (
+          <Link href='#' target='_blank'>
+            <i className='fab fa-facebook fa-2x'></i>
+          </Link>
+        )}
+        {social && social.instagram && (
+          <Link href='#' target='_blank'>
+            <i className='fab fa-instagram fa-2x'></i>
+          </Link>
+        )}
+      </div>
     </div>
   );
 };
