@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
+import { addLike, removeLike, deletePost } from '../../actions/post';
 
-const PostItem = ({ auth, post: { _id, text, name, avatar, user, likes, comments, date } }) => {
+const PostItem = ({
+  addLike,
+  removeLike,
+  deletePost,
+  auth,
+  post: { _id, text, name, avatar, user, likes, comments, date },
+}) => {
   return (
     <div className='post'>
       <div>
@@ -18,18 +25,19 @@ const PostItem = ({ auth, post: { _id, text, name, avatar, user, likes, comments
         <p>
           Posted on <Moment format='YYYY/MM/DD' />
         </p>
-        <button className='btn'>
+        <button onClick={(e) => addLike(_id)} className='btn'>
           <i className='fa fa-thumbs-up'></i>
         </button>
-        {likes.length > 0 && <span>{likes.length}</span>}
-        <button className='btn'>
+        {likes > 0 && <span>{likes.length}</span>}
+        <span>{likes.length}</span>
+        <button onClick={(e) => removeLike(_id)} className='btn'>
           <i className='fa fa-thumbs-down'></i>
         </button>
         <Link to={`/post/${_id}`}>
           Discussion {comments.length > 0 && <span className='comment-count'>{comments.length}</span>}
         </Link>
         {!auth.loading && user === auth.user._id && (
-          <button className='btn'>
+          <button onClick={(e) => deletePost(_id)} className='btn'>
             <i className='fa fa-times'></i>
           </button>
         )}
@@ -39,12 +47,15 @@ const PostItem = ({ auth, post: { _id, text, name, avatar, user, likes, comments
 };
 
 PostItem.propTypes = {
-  posts: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, {})(PostItem);
+export default connect(mapStateToProps, { addLike, removeLike, deletePost })(PostItem);
