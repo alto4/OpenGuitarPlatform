@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PostForm from './PostForm';
 import PostItem from './PostItem';
 import Spinner from '../layout/Spinner';
 import { getPosts } from '../../actions/post';
@@ -17,6 +18,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       {' '}
       <h1>Posts</h1>
       <p className='lead'>Connect with like-minded guitar connosseurs.</p>
+      <PostForm />
       <div className='posts'>
         {posts.map((post) => (
           <PostItem key={post._id} post={post} />

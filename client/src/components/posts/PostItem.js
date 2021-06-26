@@ -15,9 +15,9 @@ const PostItem = ({
   return (
     <div className='post'>
       <div>
-        <a href=''>
+        <Link to={`/profile/${user}`}>
           <img src={avatar} alt={name} className='round' />
-        </a>
+        </Link>
         <h4>{name}</h4>
       </div>
       <div>
