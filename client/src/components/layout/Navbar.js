@@ -8,9 +8,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <>
       <li className='nav-item'>
-        <Link to='/dashboard'>Home</Link>
-      </li>
-      <li className='nav-item'>
         <Link to='/'>Lessons</Link>
       </li>
       <li className='nav-item'>
@@ -29,6 +26,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const guestLinks = (
     <>
+      <li className='nav-item'>
+        <Link to='/'>Home</Link>
+      </li>
       <li className='nav-item'>
         <Link to='/'>Lessons</Link>
       </li>
