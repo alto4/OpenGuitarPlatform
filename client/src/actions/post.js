@@ -139,7 +139,26 @@ export const addComment = (postId, formData) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert('Post successfully added.', 'success'));
+    dispatch(setAlert('Comment successfully added.', 'success'));
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status },
+    });
+  }
+};
+
+// Delete comment
+export const deleteComment = (postId, commentId) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
+
+    dispatch({
+      type: REMOVE_COMMENT,
+      payload: commentId,
+    });
+
+    dispatch(setAlert('Comment successfully removed.', 'success'));
   } catch (error) {
     dispatch({
       type: POST_ERROR,
