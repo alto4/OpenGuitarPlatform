@@ -14,30 +14,34 @@ const LessonItem = ({
   lesson,
   lesson: { _id, title, description, videoURL, name, avatar, user, likes, comments, date },
   showActions,
+  showVideo,
 }) => {
   return (
-    <div className='lesson'>
-      <div>
-        <Link to={`/profile/${user}`}>
-          <img src={avatar} alt={name} className='round' />
-        </Link>
+    <div className='lesson-card'>
+      <div className='lesson-card-header'>
         <h4>{name}</h4>
+        <Link to={`/profile/${user}`}>
+          <img src={avatar} alt={name} className='round avatar-sm' />
+        </Link>
       </div>
       <div>
         <h2>{title}</h2>
-        <ReactPlayer url={videoURL} title={`Lesson #${_id}`} />
+        {showVideo && <ReactPlayer url={videoURL} title={`Lesson #${_id}`} />}
         <p>{description}</p>
-        <p>
-          Posted on <Moment format='YYYY/MM/DD' />
+        <p className='lesson-date'>
+          Posted on <Moment className='lesson-date' format='YYYY/MM/DD' />
         </p>
-        <Link to={`/lessons/${_id}`}>View Lesson </Link>
       </div>
+      <Link to={`/lessons/${_id}`} className='btn'>
+        View Lesson{' '}
+      </Link>
     </div>
   );
 };
 
 LessonItem.defaultProps = {
   showActions: true,
+  showVideo: false,
 };
 
 LessonItem.propTypes = {

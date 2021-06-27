@@ -18,7 +18,7 @@ const Lessons = ({ getLessons, lesson: { lessons, loading }, auth }) => {
       <h1>Lessons</h1>
       <p className='lead'>Check out a few of our most popular courses.</p>
       {auth.isAuthenticated && auth.user.email === 'scottaltonmusic@gmail.com' && <LessonForm />}
-      <div className='lessons'>
+      <div className='lessons section-container'>
         {lessons.map((lesson) => (
           <LessonItem key={lesson._id} id={lesson._id} lesson={lesson} />
         ))}

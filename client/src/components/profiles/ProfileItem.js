@@ -6,7 +6,7 @@ const ProfileItem = ({ profile: { user, status, location, instrument, level, gen
   return (
     <div className='profile'>
       <img src={user.avatar} alt='' />
-      <div>{user.name}</div>
+      <h3>{user.name}</h3>
       <p>{status}</p>
       <p>{location && <span>{location}</span>}</p>
       <Link to={`/profile/${user._id}`} className='btn btn-submit'>

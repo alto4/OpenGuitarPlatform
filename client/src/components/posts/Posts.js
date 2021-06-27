@@ -19,7 +19,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       <h1>Posts</h1>
       <p className='lead'>Connect with like-minded guitar connosseurs.</p>
       <PostForm />
-      <div className='posts'>
+      <div className='posts section-container'>
         {posts.map((post) => (
           <PostItem key={post._id} post={post} />
         ))}

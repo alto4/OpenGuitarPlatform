@@ -19,7 +19,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
           <h1>User Profiles</h1>
           <p className='lead'>Browse and connect with fellow guitar-lovers from around the world.</p>
 
-          <div className='profiles'>
+          <div className='profiles section-container'>
             {profiles.length > 0 ? (
               profiles.map((profile) => <ProfileItem key={profile._id} profile={profile} />)
             ) : (

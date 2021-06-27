@@ -9,9 +9,9 @@ const LessonForm = ({ addLesson }) => {
   const [videoURL, setVideoURL] = useState('');
 
   return (
-    <div className='lesson-form'>
+    <div className='lesson-form section-container'>
       <div>
-        <h3>New Lesson</h3>
+        <h2>New Lesson</h2>
       </div>
       <form
         onSubmit={(e) => {
@@ -30,9 +30,12 @@ const LessonForm = ({ addLesson }) => {
           placeholder='Add lesson description here...'
           onChange={(e) => setDescription(e.target.value)}
           value={description}
+          className='text-area'
         />
         <input type='text' placeholder='Video URL' onChange={(e) => setVideoURL(e.target.value)} value={videoURL} />
-        <button type='submit'>Add Lesson</button>
+        <button type='submit' className='btn'>
+          Add Lesson
+        </button>
       </form>
     </div>
   );

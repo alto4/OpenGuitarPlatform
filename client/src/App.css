@@ -29,14 +29,15 @@ button {
   margin: auto
 }
 
-.btn {
-  display: block;
-}
-
 h1 {
   font-size: 50px;
-  margin-bottom: 12px;
+  margin-bottom: .8rem;
   text-align: center;
+}
+
+h2 {
+  font-size: 25px;
+  margin-bottom: 1.6rem;
 }
 
 .lead {
@@ -80,11 +81,17 @@ input:-webkit-autofill {
 }
 
 .btn {
+  display: block;
   margin: auto;
   padding: 10px 20px;
   background: #222;
   border-radius: .5rem;
 }
+
+.btn-danger {
+  background: #800020;
+}
+
 
 /* Alert Styles */
 .alert {
@@ -136,6 +143,15 @@ header {
   font-size: 1.5rem;
 }
 
+.section-container {
+  width: 90%;
+  padding: 50px ;
+  margin: auto;
+}
+
+.border-white {
+  border: 1px solid #fff;
+}
 /* Hero Styles */
 .hero-container {
   position: relative;
@@ -185,10 +201,19 @@ header {
   color: #bea67c;
 }
 
+.btn:hover,
+.btn-back
 .btn-login:hover,
 .hero-container .btn:hover {
   background: #101111;
   cursor: pointer;
+}
+
+.btn-back {
+  background: #222;
+  width: 200px;
+  margin-left: 0;
+  text-align: center;
 }
 
 /* Profiles Styles */
@@ -203,7 +228,10 @@ header {
   align-content: center;
   flex-direction: column;
   padding: 1.5rem;
+  margin: 1rem;
   text-align: center;
+  border: 2px solid #222;
+  border-radius: .5rem;
 }
 
 .profile img {
@@ -212,9 +240,90 @@ header {
   margin: 20px auto;
 }
 
+.profile p {
+  line-height: 1.5;
+}
+
 .profile-top {
   text-align: center;
 }
+
+.profile .btn {
+  margin: 1rem 2rem;
+}
+
+
+/* Avatar Styles */
+.round {
+  border-radius: 100%;
+}
+
+.avatar-sm {
+  width: 65px;
+  margin-top: 1rem;
+}
+
+.avatar-md {
+  width: 100px;
+}
+
+/* Lesson Card Styles */
+.post-card,
+.lesson-card {
+  display: grid;
+  grid-template-columns: auto 2fr auto;
+  padding: 1.5rem;
+  border-bottom: 1px solid #222;
+}
+
+.post-card {
+  grid-template-columns: auto 10fr 1fr 1fr;
+}
+
+.post-action-buttons {
+  display: flex;
+  grid-template-columns: repeat(3 , 1fr);
+}
+
+.post-card-header,
+.lesson-card-header {
+  margin-right: 2rem;
+}
+
+.post-card h2,
+.lesson-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: .5rem;
+}
+
+.lesson-date,
+.post-date {
+  font-size: .8rem;
+  margin-top: 1rem;
+}
+
+.like-count,
+.post-card .btn,
+.lesson-card .btn {
+  align-self: center;
+}
+
+.like-count {
+  margin: auto .8rem;
+  font-weight: 800;
+}
+
+.btn-like {
+  padding: .5rem;
+}
+.btn-discussion {
+  margin: 1rem
+}
+
+.btn-danger {
+  margin-left: .5rem;
+}
+/* Lesson Details Styles */
 
 
 /* Dashboard Styles */
@@ -224,6 +333,34 @@ header {
   grid-template-columns: repeat(3, 1fr);
   margin: 50px auto;
 }
+
+table {
+  margin-bottom: 60px;
+}
+
+.post-form input, 
+.post-form textarea,
+.lesson-form input, 
+.lesson-form textarea {
+  width: 100%;
+  border: 1px solid #222;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+th {
+  font-weight: 700;
+  font-size: 1.3rem;
+  width: 200px;
+}
+
+table tr,
+table th {
+  padding: .4rem 0;
+  margin: 0; 
+  text-align: center;
+}
+
 
 @media(max-width: 600px) {
   .navbar {

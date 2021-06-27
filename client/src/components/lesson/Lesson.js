@@ -17,8 +17,10 @@ const Lesson = ({ getLesson, auth, lesson: { lesson, loading }, match }) => {
     <Spinner />
   ) : (
     <>
-      <Link to='/lessons'>Back to Lessons</Link>
-      <LessonItem lesson={lesson} showActions={false} />
+      <Link to='/lessons' className='btn btn-back'>
+        Back to Lessons
+      </Link>
+      <LessonItem lesson={lesson} showActions={false} showVideo={true} />
       {auth.isAuthenticated && (
         <>
           <CommentForm lessonId={lesson._id} />

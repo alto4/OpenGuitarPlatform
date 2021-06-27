@@ -20,7 +20,7 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth, match })
         <Spinner />
       ) : (
         <>
-          <Link to='/profiles' className='btn'>
+          <Link to='/profiles' className='btn btn-back'>
             Back to Profiles
           </Link>
           {auth.isAuthenticated && auth.loading === false && auth.user._id === profile.user._id && (

@@ -9,7 +9,7 @@ const PostForm = ({ addPost }) => {
   return (
     <div className='post-form'>
       <div>
-        <h3>New Post</h3>
+        <h2>New Post</h2>
       </div>
       <form
         onSubmit={(e) => {
@@ -26,7 +26,9 @@ const PostForm = ({ addPost }) => {
           onChange={(e) => setText(e.target.value)}
           value={text}
         />
-        <button type='submit'>Add Post</button>
+        <button type='submit' className='btn'>
+          Add Post
+        </button>
       </form>
     </div>
   );
