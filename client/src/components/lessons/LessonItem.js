@@ -11,6 +11,7 @@ const LessonItem = ({
   removeLike,
   deleteLesson,
   auth,
+  lesson,
   lesson: { _id, title, description, videoURL, name, avatar, user, likes, comments, date },
   showActions,
 }) => {
@@ -31,26 +32,6 @@ const LessonItem = ({
         </p>
         <Link to={`/lessons/${_id}`}>View Lesson </Link>
       </div>
-      {showActions && (
-        <>
-          <button onClick={(e) => addLike(_id)} className='btn'>
-            <i className='fa fa-thumbs-up'></i>
-          </button>
-          {likes > 0 && <span>{likes.length}</span>}
-          <span>{likes.length}</span>
-          <button onClick={(e) => removeLike(_id)} className='btn'>
-            <i className='fa fa-thumbs-down'></i>
-          </button>
-          <Link to={`/posts/${_id}`}>
-            Discussion {comments.length > 0 && <span className='comment-count'>{comments.length}</span>}
-          </Link>
-          {!auth.loading && user === auth.user._id && (
-            <button onClick={(e) => deleteLesson(_id)} className='btn'>
-              <i className='fa fa-times'></i>
-            </button>
-          )}
-        </>
-      )}
     </div>
   );
 };

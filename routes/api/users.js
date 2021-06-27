@@ -66,7 +66,7 @@ router.post(
           throw err;
         }
 
-        res.json({ token });
+        res.json({ token, email });
       });
     } catch (err) {
       console.error(err.message);

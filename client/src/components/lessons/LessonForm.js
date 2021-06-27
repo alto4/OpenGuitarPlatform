@@ -17,7 +17,9 @@ const LessonForm = ({ addLesson }) => {
         onSubmit={(e) => {
           e.preventDefault();
           addLesson({ title, description, videoURL });
+          setTitle('');
           setDescription('');
+          setVideoURL('');
         }}
       >
         <input type='text' placeholder='Lesson title' onChange={(e) => setTitle(e.target.value)} value={title} />

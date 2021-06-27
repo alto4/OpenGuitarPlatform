@@ -6,7 +6,7 @@ import LessonItem from './LessonItem';
 import Spinner from '../layout/Spinner';
 import { getLessons } from '../../actions/lesson';
 
-const Lessons = ({ getLessons, lesson: { lessons, loading } }) => {
+const Lessons = ({ getLessons, lesson: { lessons, loading }, auth }) => {
   useEffect(() => {
     getLessons();
   }, [getLessons]);
@@ -17,7 +17,7 @@ const Lessons = ({ getLessons, lesson: { lessons, loading } }) => {
     <>
       <h1>Lessons</h1>
       <p className='lead'>Check out a few of our most popular courses.</p>
-      <LessonForm />
+      {auth.isAuthenticated && auth.user.email === 'scottaltonmusic@gmail.com' && <LessonForm />}
       <div className='lessons'>
         {lessons.map((lesson) => (
           <LessonItem key={lesson._id} id={lesson._id} lesson={lesson} />
@@ -30,10 +30,12 @@ const Lessons = ({ getLessons, lesson: { lessons, loading } }) => {
 Lessons.propTypes = {
   getLessons: PropTypes.func.isRequired,
   lesson: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   lesson: state.lesson,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getLessons })(Lessons);
