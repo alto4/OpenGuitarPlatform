@@ -15,9 +15,8 @@ const Lessons = ({ getLessons, lesson: { lessons, loading } }) => {
     <Spinner />
   ) : (
     <>
-      {' '}
       <h1>Lessons</h1>
-      <p className='lead'>Connect with like-minded guitar connosseurs.</p>
+      <p className='lead'>Check out a few of our most popular courses.</p>
       <LessonForm />
       <div className='lessons'>
         {lessons.map((lesson) => (

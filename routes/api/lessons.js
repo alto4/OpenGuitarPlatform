@@ -58,7 +58,7 @@ router.get('/', async (req, res) => {
 });
 
 // @route GET api/lessons/:id public - get single lesson
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const lesson = await Lesson.findById(req.params.id);
 
