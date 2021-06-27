@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addLesson } from '../../actions/lesson';
 
 const LessonForm = ({ addLesson }) => {
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [videoURL, setVideoURL] = useState('');
 
@@ -15,11 +16,11 @@ const LessonForm = ({ addLesson }) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addLesson({ videoURL, description });
+          addLesson({ title, description, videoURL });
           setDescription('');
         }}
       >
-        <input type='text' placeholder='Video URL' onChange={(e) => setVideoURL(e.target.value)} value={videoURL} />
+        <input type='text' placeholder='Lesson title' onChange={(e) => setTitle(e.target.value)} value={title} />
         <textarea
           name='text'
           cols='30'
@@ -28,6 +29,7 @@ const LessonForm = ({ addLesson }) => {
           onChange={(e) => setDescription(e.target.value)}
           value={description}
         />
+        <input type='text' placeholder='Video URL' onChange={(e) => setVideoURL(e.target.value)} value={videoURL} />
         <button type='submit'>Add Lesson</button>
       </form>
     </div>
