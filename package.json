@@ -1,6 +1,9 @@
 {
   "name": "openguitarplatform",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "description": "Guitar education platform and social media network.",
   "main": "server.js",
   "scripts": {
